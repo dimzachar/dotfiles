@@ -1,16 +1,26 @@
-#!/usr/bin/env bash
-set -e
+#!/bin/bash
 
-echo "Installing oh-my-posh"
+# Install oh-my-posh
+curl -s https://ohmyposh.dev/install.sh | bash -s
 
-# install oh-my-posh binary
-curl -fsSL https://ohmyposh.dev/install.sh | bash -s
+# Add to PATH and configure in .bashrc
+cat >> ~/.bashrc << 'EOF'
 
-echo "Installing theme"
+# Oh My Posh
+export PATH=$HOME/.local/bin:$PATH
+eval "$(oh-my-posh init bash --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/hul10.omp.json)"
 
-mkdir -p "$HOME/.poshthemes"
-curl -fsSL \
-  https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/hul10.omp.json \
-  -o "$HOME/.poshthemes/hul10.omp.json"
+# fzf
+eval "$(fzf --bash)"
 
-echo "Done"
+# History
+HISTSIZE=4096
+HISTFILESIZE=4096
+
+# Aliases
+alias cn='rm -rf .next'
+alias nodemodules='rm -rf node_modules'
+EOF
+
+# Install fzf
+sudo apt-get update && sudo apt-get install -y fzf
