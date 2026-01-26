@@ -1,13 +1,18 @@
-# Oh My Posh prompt
-eval "$(oh-my-posh init bash --config ~/.poshthemes/hul10.omp.json)"
+# ---- OH MY POSH ----
+if command -v oh-my-posh >/dev/null 2>&1 && \
+   [ -f "$HOME/.poshthemes/hul10.omp.json" ]; then
+  eval "$(oh-my-posh init bash --config $HOME/.poshthemes/hul10.omp.json)"
+fi
 
-# fzf integration (Ctrl+R for fuzzy history search)
-eval "$(fzf --bash)"
+# ---- FZF ----
+if command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --bash)"
+fi
 
-# Increase history size
+# ---- HISTORY ----
 HISTSIZE=4096
 HISTFILESIZE=4096
 
-# Aliases (equivalent to your PowerShell ones)
+# ---- ALIASES ----
 alias cn='rm -rf .next'
 alias nodemodules='rm -rf node_modules'
