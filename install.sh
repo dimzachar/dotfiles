@@ -13,6 +13,11 @@ cat >> ~/.bashrc << 'EOF'
 export PATH=$HOME/.local/bin:$PATH
 eval "$(oh-my-posh init bash --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/hul10.omp.json)"
 
+# Enable bash completion
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
 # fzf
 if command -v fzf &> /dev/null; then
     eval "$(fzf --bash)"
